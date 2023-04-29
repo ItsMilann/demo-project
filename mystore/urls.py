@@ -16,11 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from products.views import AboutView, ProductList
+
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # https://www.twimg.com/media/file.png/ # URL
-    # https: protocol
-    # www.twimg.com: domain -> resolves into IP Address
-    # /media/file.png: path/resource
+    path("", AboutView.as_view()),
+    path("products", ProductList.as_view()),
 ]
-# 
