@@ -1,2 +1,3 @@
 local
 *.jpg
+*/__pycache__
