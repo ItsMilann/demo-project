@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
+{% block body %}
+<div class="row">
   {% for product in object_list %}
-  <ul>
-    <li>{{ product.name }}</li>
-  </ul>
-  {% endfor %}
-</body>
-
-</html>
+  <div class="card" style="width: 18rem;">
+    <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{product.name}}</h5>
+      <p class="card-text">{{product.description}}
+      </p>
+      <a href="#" class="btn btn-primary">Buy Now</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
