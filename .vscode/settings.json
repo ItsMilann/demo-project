@@ -1,0 +1,11 @@
+{
+    "black-formatter.args": [
+        "--line-length",
+        "99"
+    ],
+    "pylint.enabled": true,
+    "python.analysis.autoImportCompletions": false,
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportIncompatibleMethodOverride": "none"
+    }
+}

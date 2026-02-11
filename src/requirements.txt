@@ -1,0 +1,23 @@
+Django==4.2.11
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.1
+psycopg2-binary==2.9.9
+python-decouple==3.8
+django-cors-headers==4.3.1
+cryptography==42.0.2
+django-filter==23.5
+uwsgi==2.0.22
+
+# Testing and Coverage
+coverage==7.4.1
+pytest==8.0.0
+pytest-django==4.7.0
+pytest-cov==4.1.0
+
+# Security Scanning
+safety==3.0.1
+bandit==1.7.6
+
+# Code Quality
+pylint==3.0.3
+flake8==7.0.0

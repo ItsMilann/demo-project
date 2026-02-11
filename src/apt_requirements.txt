@@ -1,0 +1,6 @@
+postgresql-client
+gcc
+python3-dev
+musl-dev
+libpq-dev
+build-essential

@@ -1,0 +1,20 @@
+# Bandit configuration for security scanning
+
+[bandit]
+exclude_dirs = 
+    /tests/,
+    /test_,
+    /migrations/,
+    /venv/,
+    /env/
+
+# Test IDs to skip
+# B101: Use of assert detected (common in tests)
+# B601: paramiko calls (if using paramiko)
+skips = B101
+
+# Severity level: LOW, MEDIUM, HIGH
+# Confidence level: LOW, MEDIUM, HIGH
+# Report only issues with at least MEDIUM severity and confidence
+severity = MEDIUM
+confidence = MEDIUM

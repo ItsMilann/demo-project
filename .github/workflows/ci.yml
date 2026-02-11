@@ -1,0 +1,59 @@
+name: Demo Project CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Create necessary files
+      run: |
+        cp docker-compose.example.yml docker-compose.yml
+        cp .env.example .env
+        cp src/config/settings/example.py src/config/settings/development.py
+
+    - name: Run Services
+      run: docker compose up --build -d
+
+    - name: Run Tests with Coverage
+      run: |
+        docker compose run --rm web coverage run --source='.' manage.py test --verbosity=2
+        docker compose run --rm web coverage report
+        docker compose run --rm web coverage xml
+        docker compose run --rm web coverage html
+
+    - name: Run Security Checks
+      run: |
+        docker compose run --rm web safety check --json > src/safety-report.json || true
+        docker compose run --rm web bandit -r . -f json -o src/bandit-report.json -c .bandit || true
+
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        file: ./src/coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+
+    - name: Upload Coverage HTML Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: src/htmlcov/
+
+    - name: Upload Security Reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: security-reports
+        path: |
+          src/safety-report.json
+          src/bandit-report.json
+
+    - name: Stop Docker containers
+      run: docker compose down

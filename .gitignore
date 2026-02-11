@@ -1,0 +1,43 @@
+# Python
+*.pyc
+static/
+media/
+./*/__pycache__/*.pyc
+logs/
+venv/
+# database dirs
+_postgres_data/
+*redis_data/
+redis
+# docker
+docker-compose.yaml
+docker-compose.yml
+nginx/*
+!nginx/nginx-proxy.conf.example
+# django
+config/settings/*
+!config/settings/example.py
+!config/settings/base.py
+local
+env.txt
+.env
+# node
+node_modules
+!package.json
+!package-lock.json
+dist/
+# coverage reports
+htmlcov/
+.coverage
+coverage.xml
+.coverage.*
+# security scan reports
+safety-report.json
+bandit-report.json
+# pytest cache
+.pytest_cache/
+__pycache__/
+# test databases
+*.db
+db.sqlite3
+test_*.sqlite3
